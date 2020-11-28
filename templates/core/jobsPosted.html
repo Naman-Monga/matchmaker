@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %} {% load crispy_forms_tags %} {% load static %}{% block body %} {% include 'core/employerPanelNav.html' %}
+<div class="container">
+    <h1 class="display-5 text-center"><u>Jobs Posted</u></h1>
+    {% for i in jobs %}
+    <div class="card">
+        <div class="card-body">
+            <a href="{% url 'job-detail' i.pk %}">
+                <h5 class="card-title" style="font-weight:bold;">{{i.job_title}}</h5>
+            </a>
+            <h6 class="card-subtitle mb-2 text-muted">{{i.employer}}</h6>
+            <p class="card-text">{{i.job_description}}</p>
+            <div class="row">
+                <div class="col-4 job-post-head">
+                    Exp.
+                </div>
+                <div class="col-4 job-post-head">
+                    Salary
+                </div>
+                <div class="col-4 job-post-head">
+                    Apply by
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    {{i.exp_in_yrs}} yrs
+                </div>
+                <div class="col-4">
+                    {{i.salary_per_annum}} l.p.a.
+                </div>
+                <div class="col-4">
+                    {{i.date_deadline}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

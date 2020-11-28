@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %} {% load crispy_forms_tags %} {% load static %}{% block body %} {% include 'core/employerPanelNav.html' %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="{% url 'jobs-posted' %}">
+                        <h5><strong>Total Jobs Posted</strong></h5>
+                    </a>
+                </div>
+                <div class="text-center col-md-6">
+
+                    <h5><strong>25</strong></h5>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card" style="padding:10px">
+        <h5><strong>Add Job Posting</strong></h5>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <br>
+            <fieldset class="form-group">
+                {{ job_form|crispy }}
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

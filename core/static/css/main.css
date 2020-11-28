@@ -1,0 +1,19 @@
+#filter-bar {
+    position: relative;
+}
+
+#jobs-section {}
+
+.card {
+    margin: 10px;
+    border-width: 3px;
+}
+
+body {
+    background-color: #f4f4f4f4;
+}
+
+.job-post-head {
+    font-weight: bold;
+    font-size: 0.6 vh;
+}

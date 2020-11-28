@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}{% load static %} {% load crispy_forms_tags %} {% block body %}
+<br><br>
+<div class="container">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-4" style="padding:20px;">
+                <img src="{% static 'images/ME.jpg' %}" class="card-img" alt="..." style="height:120px;object-fit: contain;float: right;">
+            </div>
+            <div class="card-body">
+                <div class="card-title">
+                    <h4><strong>{{candidate.fname}} {{candidate.lname}}</strong></h4>
+                </div>
+                <div class="text">
+                    <h6>{{candidate.user}}@gmail.com</h6>
+                </div><br>
+                <div class="text">
+                    <a href="{% url 'jobs-applied' %}">
+                        <h6><u>Jobs Applied</u></h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+            <div class="card" style="padding:10px">
+                <h5><strong>My Profile</strong></h5>
+
+                <form action="{% url 'info-form' %}" method="POST">
+                    {% csrf_token %}
+
+                    <fieldset class="form-group">
+                        {{ info_form|crispy}}
+                    </fieldset>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+            <div class="card" style="padding:10px">
+
+                <h5><strong>Job Requirements</strong></h5>
+                <form action="" method="POST">
+                    <br> {% csrf_token %}
+
+                    <fieldset class="form-group">
+                        {{ specs_form|crispy}}
+                    </fieldset>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

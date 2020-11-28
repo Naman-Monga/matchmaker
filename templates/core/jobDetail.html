@@ -1,0 +1,88 @@
+{% extends 'core/base.html' %} {% load static %} {% block body %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">{{job.employer}}</div>
+
+        <div class="card-body">
+            <h5 class="card-title">{{job.job_title}}</h5>
+            <p class="card-text">{{job.job_description}}</p>
+            <div class="row">
+                <div class="col-4 job-post-head">
+                    Exp.
+                </div>
+                <div class="col-4 job-post-head">
+                    Salary
+                </div>
+                <div class="col-4 job-post-head">
+                    Apply by
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    {{job.exp_in_yrs}} yrs
+                </div>
+                <div class="col-4">
+                    {{job.salary_per_annum}} l.p.a.
+                </div>
+                <div class="col-4">
+                    {{job.date_deadline}}
+                </div>
+            </div>
+            <br> {% if not applied %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" class="d-none" name="confirm" value="apply">
+                <button type="submit" class="btn btn-success">Apply</button>
+            </form>
+            {% else %}
+            <button class="btn btn-primary" disabled>Applied</button> {% endif %}
+        </div>
+    </div>
+    <br><br> {% if is_owner %}
+    <!-- <h3 class="display-6">Candidates List:</h3> -->
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Skills</th>
+            </tr>
+        </thead>
+        {% if is_top %}
+        <tbody>
+            <h5><strong>Top Matches:</strong></h5>
+            {% for app in top_candidates %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{app.fname}}</td>
+                <td>{{app.lname}}</td>
+                <td>{{app.experience}} yrs</td>
+                <td>{{ app.skills }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br>
+    <h5>All Candidates: </h5>
+    <table class="table">
+        <tbody>
+
+            {% for app in applications %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{app.fname}}</td>
+                <td>{{app.lname}}</td>
+                <td>{{app.experience}} yrs</td>
+                <td>{{ app.skills }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+</div>
+{% endblock %}
