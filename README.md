@@ -1,4 +1,6 @@
 # matchmaker
+![LOC](https://img.shields.io/badge/lines%20of%20code-1.6K-brightgreen)
+
 A django based web-app to match candidates with employers based on prefrences of each side.
 
 Home:
